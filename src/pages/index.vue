@@ -1,9 +1,8 @@
 <script setup lang="ts">
-
 </script>
 
 <template>
-  <router-view />
+  <h1>Hello FE Playground!!!</h1>
 </template>
 
 <style>
