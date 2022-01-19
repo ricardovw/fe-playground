@@ -2,7 +2,11 @@
 </script>
 
 <template>
-  <h1>Hello FE Playground!!!</h1>
+  <div class="
+    text-blue-500 text-5xl
+    w-full h-screen flex justify-center items-center">
+    Hello FE Playground!!!
+  </div>
 </template>
 
 <style>
