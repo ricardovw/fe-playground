@@ -14,18 +14,8 @@ const btnLabel = computed(() => {
 </script>
 
 <template>
-  <!-- google logo final -->
-  <div v-if="step === 0" class="w-full h-screen
-    flex flex-col justify-center items-center">
-    <button @click="step++" class="mb-5">Start</button>
-    <div class="google">
-      <div class="base final-outline"></div>
-      <div class="base final-half"></div>
-      <div class="final-line"></div>
-    </div>
-  </div>
   <!-- google logo steps -->
-  <div v-if="step > 0" class="w-full h-screen
+  <div class="w-full h-screen
     flex flex-col justify-center items-center">
     <button @click="step++" class="mb-5"
       :disabled="step === max">
@@ -39,7 +29,13 @@ const btnLabel = computed(() => {
   </div>
 </template>
 
-<style>
+<route>
+{
+  "name": "logo-google-steps"
+}
+</route>
+
+<style scoped>
 .google {
   position: relative;
   width: 150px;
@@ -50,31 +46,6 @@ const btnLabel = computed(() => {
   width: 150px;
   height: 150px;
 }
-.final-outline {
-  border-top: 30px solid #E33E2B;
-  border-right: 30px solid transparent;
-  border-bottom: 30px solid #2BA14B;
-  border-left: 30px solid #F1B500;
-  border-radius: 50%;
-}
-.final-half {
-  border: 30px solid transparent;
-  border-right: 30px solid #3A7CEC;
-  transform: rotate(45deg);
-  border-radius: 50%;
-  z-index: -1;
-}
-.final-line {
-  position: absolute;
-  width: 80px;
-  height: 30px;
-  background-color: #3A7CEC;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  border-bottom-right-radius: 15px;
-}
-/* BUILD STEPS */
 .outline-step-1 {
   border-top: 30px solid #E33E2B;
 }
