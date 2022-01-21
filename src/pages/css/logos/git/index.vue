@@ -7,7 +7,7 @@
     flex flex-col justify-center items-center">
     <button @click="$router.push({ name: 'logo-git-steps' })"
       class="mb-10">Start</button>
-    <div class="git">
+    <div class="git" id="logo">
       <div class="main-branch"></div>
       <div class="dev-branch"></div>
     </div>
@@ -15,18 +15,22 @@
 </template>
 
 <style scoped>
+#logo {
+  --primary: #F05033;
+  --base: white;
+}
 .git {
   position: relative;
   width: 150px;
   height: 150px;
-  background-color: #F05033;
+  background-color: var(--primary);
   border-radius: 15px;
   transform: rotate(45deg);
 }
 .main-branch {
   width: 110px;
   height: 12px;
-  background: white;
+  background: var(--base);
   position: absolute;
   top: 40px;
 }
@@ -37,7 +41,7 @@
   content: "";
   width: 30px;
   height: 30px;
-  background-color: white;
+  background-color: var(--base);
   border-radius: 50%;
 }
 .main-branch:before {
@@ -51,7 +55,7 @@
 .dev-branch {
   width: 90px;
   height: 12px;
-  background: white;
+  background: var(--base);
   position: absolute;
   top: 70px;
   left: 30px;

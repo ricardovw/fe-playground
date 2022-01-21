@@ -5,7 +5,7 @@
   <!-- pepsi logo -->
   <div class="w-full h-screen bg-slate-300
     flex flex-col justify-center items-center">
-    <div class="pepsi"></div>
+    <div class="pepsi" id="logo"></div>
     <button @click="$router.push({ name: 'logo-instagram-steps'})"
       class="mt-10">Start</button>
   </div>
@@ -18,12 +18,17 @@
 </route>
 
 <style scoped>
+#logo {
+  --blue: #34588e;
+  --red: #da473c;
+  --base: white;
+}
 .pepsi {
   height: 300px;
   width: 300px;
-  background-color: #34588e;
+  background-color: var(--blue);
   border-radius: 50%;
-  border: 10px solid white;
+  border: 10px solid var(--base);
   position: relative;
   overflow: hidden;
 }
@@ -33,7 +38,7 @@
   height: 400px;
   width: 500px;
   border-radius: 25%;
-  background-color: white;
+  background-color: var(--base);
   top: -160px;
   left: -240px;
   transform: rotate(-18deg);

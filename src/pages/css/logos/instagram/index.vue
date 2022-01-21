@@ -7,7 +7,7 @@
     flex flex-col justify-center items-center">
     <button @click="$router.push({ name: 'logo-instagram-steps'})"
       class="mb-5">Start</button>
-    <div class="instagram centered">
+    <div id="logo" class="instagram centered">
       <div class="camera outlined centered">
         <div class="lense outlined "></div>
         <div class="flash"></div>
@@ -23,19 +23,26 @@
 </route>
 
 <style scoped>
+#logo {
+  --base: white;
+  --yellow: #FDF497;
+  --orange: #FD5949;
+  --pink: #D6249F;
+  --blue: #285AEB;
+}
 .centered {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .outlined {
-  border: 12px solid white;
+  border: 12px solid var(--base);
 }
 .instagram {
   height: 200px;
   width: 200px;
   border-radius: 60px;
-  background: radial-gradient(circle at 30% 107%, #FDF497 0%, #FDF497 5%, #FD5949 45%, #D6249F 60%, #285AEB 90%);
+  background: radial-gradient(circle at 30% 107%, var(--yellow) 0%, var(--yellow) 5%, var(--orange) 45%, var(--pink) 60%, var(--blue) 90%);
 }
 .camera {
   width: 160px;
@@ -53,7 +60,7 @@
 .flash {
   height: 15px;
   width: 15px;
-  background-color: white;
+  background-color: var(--base);
   border-radius: 50%;
   position: absolute;
   top: 15px;

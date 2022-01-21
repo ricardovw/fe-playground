@@ -7,7 +7,7 @@
     flex flex-col justify-center items-center">
     <button @click="$router.push({ name: 'logo-adidas-steps' })"
       class="mb-5">Start</button>
-    <div class="adidas">
+    <div class="adidas" id="logo">
       <div class="line one"></div>
       <div class="line two"></div>
       <div class="line three"></div>
@@ -16,6 +16,9 @@
 </template>
 
 <style scoped>
+#logo {
+  --primary: #111;
+}
 .adidas {
   position: relative;
   width: 206px;
@@ -25,7 +28,7 @@
 .line {
   width: 46px;
   height: 150px;
-  background-color: #111;
+  background-color: var(--primary);
   position: absolute;
   transform: rotate(-31deg)
 }
