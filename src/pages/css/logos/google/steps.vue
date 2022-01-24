@@ -17,8 +17,8 @@ const btnLabel = computed(() => {
   <!-- google logo steps -->
   <div class="w-full h-screen
     flex flex-col justify-center items-center">
-    <button @click="step++" class="mb-5"
-      :disabled="step === max">
+    <button @click="step++"
+      class="mb-5" :disabled="step === max">
       {{ btnLabel }}
     </button>
     <div class="google">
