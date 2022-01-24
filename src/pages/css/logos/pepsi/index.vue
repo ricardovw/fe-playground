@@ -6,7 +6,7 @@
   <div class="w-full h-screen bg-slate-300
     flex flex-col justify-center items-center">
     <div class="pepsi" id="logo"></div>
-    <button @click="$router.push({ name: 'logo-instagram-steps'})"
+    <button @click="$router.push({ name: 'logo-pepsi-steps'})"
       class="mt-10">Start</button>
   </div>
 </template>
