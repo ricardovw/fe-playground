@@ -1,9 +1,45 @@
 <script setup lang="ts">
-import { ref, unref } from 'vue'
+import { ref, unref, reactive, computed } from 'vue'
+import classHelpers from '@/functions/classHelpers'
+import { classHandler, classHandlerOpts } from '@/functions/classHelpers'
+
+// const { classHandler, classHandlerOpts } = classHelpers;
 
 const opacity = ref(false)
 const position = ref(false)
+const color = ref(false)
+const radius = ref(false)
 
+// @TODO remove typeof
+const refs: typeof classHandlerOpts = reactive({
+  _opacity: opacity,
+  _position: position,
+  _color: color,
+  _radius: radius,
+})
+
+const foreheadClasses = computed(() => classHandler('forehead', refs));
+const hair1Classes = computed(() => classHandler('hair1', refs));
+const hair2Classes = computed(() => classHandler('hair2', refs));
+const eyeRightClasses = computed(() => classHandler('eye-right', refs));
+const pupilRightClasses = computed(() => classHandler('pupil-right', refs));
+const eyeLeftClasses = computed(() => classHandler('eye-left', refs));
+const pupilLeftClasses = computed(() => classHandler('pupil-left', refs));
+const headBaseClasses = computed(() => classHandler('head-base', refs));
+const neckClasses = computed(() => classHandler('neck', refs));
+const mouthClasses = computed(() => classHandler('mouth', refs));
+const bottomLipClasses = computed(() => classHandler('bottom-lip', refs));
+const upperLipClasses = computed(() => classHandler('upper-lip', refs));
+const mouthSideClasses = computed(() => classHandler('mouth-side', refs));
+const mouthSideMaskClasses = computed(() => classHandler('mouth-side-mask', refs));
+const mouthUpperClasses = computed(() => classHandler('mouth-upper', refs));
+const mouthMaskClasses = computed(() => classHandler('mouth-mask', refs));
+const headSideClasses = computed(() => classHandler('head-side', refs));
+const earClasses = computed(() => classHandler('ear', refs));
+const earInnerClasses = computed(() => classHandler('ear-inner', refs));
+const noseClasses = computed(() => classHandler('nose', refs));
+const collarLeftClasses = computed(() => classHandler('collar-left', refs));
+const collarRightClasses = computed(() => classHandler('collar-right', refs));
 </script>
 
 <template>
@@ -13,76 +49,42 @@ const position = ref(false)
     <div class="flex justify-center space-x-5 mb-10 z-50">
       <button @click="opacity = !opacity">Opacity</button>
       <button @click="position = !position">Deconstruct</button>
+      <button @click="color = !color">Color</button>
+      <button @click="radius = !radius">Radius</button>
     </div>
     <div>
       <div class="homer">
-        <div class="forehead transition-all duration-200"
-          :class="[opacity ? 'opacity-50' : 'opacity-100',
-          position ? 'forehead-pon' : 'forehead-poff']"></div>
-            <div class="hair1 transition-all duration-200"
-              :class="[opacity ? 'opacity-50' : 'opacity-100',
-              position ? 'hair1-pon' : 'hair1-poff']"></div>
-            <div class="hair2 transition-all duration-200"
-              :class="[opacity ? 'opacity-50' : 'opacity-100',
-              position ? 'hair2-pon' : 'hair2-poff']"></div>
-            <div class="head-base transition-all duration-200"
-              :class="[opacity ? 'opacity-50' : 'opacity-100',
-              position ? 'head-base-pon' : 'head-base-off']"></div>
+        <div class="forehead animate" :class="foreheadClasses"></div>
+            <div class="hair1 animate" :class="hair1Classes"></div>
+            <div class="hair1 animate" :class="hair2Classes"></div>
+            <div class="head-base animate" :class="headBaseClasses"></div>
 
-        <div class="eye-right transition-all duration-200 "
-          :class="[opacity ? 'opacity-50' : 'opacity-100',
-            position ? 'eye-right-pon' : 'eye-right-poff']">
-            <div class="eye-right-pupil"></div>
+        <div class="eye-right animate" :class="eyeRightClasses">
+            <div class="pupil-right animate" :class="pupilRightClasses"></div>
         </div>
-        <div class="eye-left" :class="opacity ? 'opacity-50' : 'opacity-100'">
-            <div class="eye-left-pupil"></div>
+        <div class="eye-left animate" :class="eyeLeftClasses">
+            <div class="pupil-left animate" :class="pupilLeftClasses"></div>
         </div>
 
-        <div class="neck transition-all duration-200"
-          :class="[opacity ? 'opacity-50' : 'opacity-100',
-          position ? 'neck-pon' : 'neck-poff']"></div>
+        <div class="neck animate" :class="neckClasses"></div>
 
-        <div class="mouth" :class="opacity ? 'opacity-50' : 'opacity-100'">
-            <div class="bottom-lip transition-all duration-200"
-              :class="[opacity ? 'opacity-50' : 'opacity-100',
-              position ? 'bottom-lip-pon' : 'bottom-lip-poff']"></div>
-            <div class="upper-lip transition-all duration-200"
-              :class="[opacity ? 'opacity-50' : 'opacity-100',
-              position ? 'upper-lip-pon' : 'upper-lip-poff']"></div>
+        <div class="mouth animate" :class="mouthClasses">
+            <div class="bottom-lip animate" :class="bottomLipClasses"></div>
+            <div class="upper-lip animate" :class="upperLipClasses"></div>
         </div>
-        <div class="mouth-side transition-all duration-200"
-          :class="[opacity ? 'opacity-50' : 'opacity-100',
-          position ? 'mouth-side-pon' : 'mouth-side-poff']"></div>
-        <div class="mouth-side-mask transition-all duration-200" 
-          :class="[opacity ? 'opacity-50' : 'opacity-100',
-          position ? 'mouth-side-mask-pon' : 'mouth-side-mask-poff']"></div>
-        <div class="mouth-upper transition-all duration-200" 
-          :class="[opacity ? 'opacity-50' : 'opacity-100',
-          position ? 'mouth-upper-pon' : 'mouth-upper-poff']"></div>
-        <div class="mouth-mask transition-all duration-200"
-          :class="[opacity ? 'opacity-50' : 'opacity-100',
-          position ? 'mouth-mask-pon' : 'mouth-mask-poff']"></div>
-        <div class="head-side transition-all duration-200"
-          :class="[opacity ? 'opacity-50' : 'opacity-100',
-          position ? 'head-side-pon' : 'head-side-poff']"></div>
+        <div class="mouth-side animate" :class="mouthSideClasses"></div>
+        <div class="mouth-side-mask animate" :class="mouthSideMaskClasses"></div>
+        <div class="mouth-upper animate" :class="mouthUpperClasses"></div>
+        <div class="mouth-mask animate" :class="mouthMaskClasses"></div>
+        <div class="head-side animate" :class="headSideClasses"></div>
 
-        <div class="ear transition-all duration-200"
-          :class="[opacity ? 'opacity-50' : 'opacity-100',
-            position ? 'ear-pon' : 'ear-poff']">
-            <div class="ear-inner transition-all duration-200"
-              :class="[opacity ? 'opacityOn' : 'opacityOff',
-              position ? 'ear-inner-pon' : 'ear-inner-poff']">
+        <div class="ear animate" :class="earClasses">
+            <div class="ear-inner animate" :class="earInnerClasses">
             </div>
         </div>
-        <div class="nose transition-all duration-200"
-          :class="[opacity ? 'opacity-50' : 'opacity-100',
-          position ? 'nose-pon' : 'nose-poff']"></div>
-        <div class="collar-left transition-all duration-200"
-          :class="[opacity ? 'opacity-50' : 'opacity-100',
-          position ? 'collar-left-pon' : 'collar-left-poff']"></div>
-        <div class="collar-right transition-all duration-200"
-          :class="[opacity ? 'opacity-50' : 'opacity-100',
-          position ? 'collar-right-pon' : 'collar-right-poff']"></div>
+        <div class="nose animate" :class="noseClasses"></div>
+        <div class="collar-left animate" :class="collarLeftClasses"></div>
+        <div class="collar-right animate" :class="collarRightClasses"></div>
       </div>
     </div>
   </div>
@@ -101,6 +103,9 @@ const position = ref(false)
   --neutral: white;
   --skin: #FED90F;
   --mouth: #D1B271
+}
+.animate {
+  transition: all 200ms;
 }
 .opacity-on {
   opacity: 0.65;
@@ -126,10 +131,23 @@ const position = ref(false)
   position: absolute;
   width: 170px;
   height: 200px;
-  border-radius: 60%/50%;
   transform: rotate(-18deg);
-  background-color: var(--skin);
   border: 1px solid var(--base);
+}
+.forehead-ron {
+  border-top-right-radius: 0%;
+  border-top-left-radius: 0%;
+  border-bottom-left-radius: 0%;
+  border-bottom-right-radius: 30%;
+}
+.forehead-roff {
+    border-radius: 60%/50%;
+}
+.forehead-con {
+  background-color: grey;
+}
+.forehead-coff {
+  background-color: var(--skin);
 }
 .forehead-pon {
   top: -60px;
@@ -141,6 +159,12 @@ const position = ref(false)
   position: absolute;
   width: 80px;
   height: 70px;
+}
+.hair1-ron {
+  border-top: 2px solid var(--base);
+  border-radius: 0%;
+}
+.hair1-roff {
   border-top: 2px solid var(--base);
   border-radius: 50%;
 }
@@ -161,6 +185,14 @@ const position = ref(false)
   border-top: 2px solid var(--base);
   border-radius: 50%;
 }
+.hair2-ron {
+  border-top: 2px solid var(--base);
+  border-radius: 0%;
+}
+.hair2-roff {
+  border-top: 2px solid var(--base);
+  border-radius: 50%;
+}
 .hair2-pon {
   top: -30px;
   left: -105px;
@@ -175,9 +207,14 @@ const position = ref(false)
   position: absolute;
   width: 75px;
   height: 75px;
-  border-radius: 50%;
   background-color: var(--neutral);
   border: 1px solid var(--base);
+}
+.eye-right-ron {
+  border-radius: 0%;
+}
+.eye-right-roff {
+  border-radius: 50%;
 }
 .eye-right-pon {
   left: 180px;
@@ -187,7 +224,7 @@ const position = ref(false)
   left: 120px;
   top: 110px;
 }
-.eye-right-pupil {
+.pupil-right {
   position: absolute;
   width: 9px;
   height: 9px;
@@ -196,6 +233,12 @@ const position = ref(false)
   top: 40px;
   border-radius: 50%;
   animation: right-eye 3s linear 0s infinite;
+}
+.pupil-right-ron {
+  border-radius: 0%;
+}
+.pupil-right-roff {
+  border-radius: 50%;
 }
 .eye-left {
   position: absolute;
@@ -207,7 +250,13 @@ const position = ref(false)
   background-color: var(--neutral);
   border: 1px solid var(--base);
 }
-.eye-left-pupil {
+.eye-left-ron {
+  border-radius: 0%;
+}
+.eye-left-roff {
+  border-radius: 50%;
+}
+.pupil-left {
   position: absolute;
   width: 9px;
   height: 9px;
@@ -217,20 +266,36 @@ const position = ref(false)
   border-radius: 50%;
   animation: right-eye 3s linear 0s infinite;
 }
+.pupil-left-ron {
+  border-radius: 0%;
+}
+.pupil-left-roff {
+  border-radius: 50%;
+}
 .head-base {
+  position: absolute;
   top: 185px;
   left: 30px;
-  position: absolute;
   width: 140px;
   height: 60px;
+}
+.head-base-con {
+  background-color: red;
+}
+.head-base-coff {
   background-color: var(--skin);
 }
 .head-side {
   position: absolute;
   width: 40px;
   height: 60px;
-  background-color: var(--skin);
   border-left: 1px solid var(--base);
+}
+.head-side-con {
+  background-color: lightskyblue;
+}
+.head-side-coff {
+  background-color: var(--skin);
 }
 .head-side-pon {
   top: 165px;
@@ -246,12 +311,23 @@ const position = ref(false)
   position: absolute;
   width: 60px;
   height: 32px;
-  background-color: var(--skin);
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
   border-right: 1px solid var(--base);
   border-top: 1px solid var(--base);
   border-bottom: 1px solid var(--base);
+}
+.nose-ron {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.nose-roff {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.nose-con {
+  background-color: greenyellow;
+}
+.nose-coff {
+  background-color: var(--skin);
 }
 .nose-pon {
   top: 162px;
@@ -268,16 +344,32 @@ const position = ref(false)
   background-color: var(--mouth);
   top: 202px;
   left: 60px;
-  border-radius: 50%;
   border: 1px solid var(--base);
+}
+.mouth-ron {
+  z-index: 1;
+  border-radius: 0%;
+}
+.mouth-roff {
+  border-radius: 50%;
 }
 .bottom-lip {
   position: absolute;
   width: 20px;
   height: 30px;
-  background-color: var(--mouth);
-  border-radius: 50%;
   border-right: 1px solid var(--base);
+}
+.bottom-lip-ron {
+  border-radius: 0%;
+}
+.bottom-lip-roff {
+  border-radius: 50%;
+}
+.bottom-lip-con {
+  background-color: steelblue;
+}
+.bottom-lip-coff {
+  background-color: var(--mouth);
 }
 .bottom-lip-pon {
   top: 133px;
@@ -296,9 +388,23 @@ const position = ref(false)
   background-color: var(--mouth);
   border-right: 1px solid var(--base);
   border-bottom: 1px solid var(--base);
+}
+.upper-lip-ron {
+  border-top-right-radius: 0%;
+  border-bottom-left-radius: 0%;
+  border-bottom-right-radius: 0%;
+}
+.upper-lip-roff {
   border-top-right-radius: 100%;
   border-bottom-left-radius: 100%;
   border-bottom-right-radius: 60%;
+}
+
+.upper-lip-con {
+  background-color: blue;
+}
+.upper-lip-coff {
+  background-color: var(--mouth);
 }
 .upper-lip-pon {
   top: 63px;
@@ -314,10 +420,24 @@ const position = ref(false)
   position: absolute;
   width: 35px;
   height: 40px;
-  background-color: var(--mouth);
-  border-top-right-radius: 5%;
   border-top: 1px solid var(--base);
+}
+.mouth-side-ron {
+  z-index: 8;
+  border-top-right-radius: 0%;
+  border-top-right-radius: 0%;
+  border-bottom-right-radius: 0%;
+}
+.mouth-side-roff {
+  border-top-right-radius: 100%;
+  border-top-right-radius: 5%;
   border-bottom-right-radius: 100%;
+}
+.mouth-side-con {
+  background-color: orange;
+}
+.mouth-side-coff {
+  background-color: var(--mouth);
 }
 .mouth-side-pon {
   top: 208px;
@@ -354,7 +474,19 @@ const position = ref(false)
   background-color: var(--mouth);
   border-top: 1px solid var(--base);
   border-right: 1px solid var(--base);
+}
+.mouth-upper-ron {
+  z-index: 2;
+  border-top-right-radius: 0%;
+}
+.mouth-upper-roff {
   border-top-right-radius: 70%;
+}
+.mouth-upper-con {
+  background-color: teal;
+}
+.mouth-upper-coff {
+  background-color: var(--mouth);
 }
 .mouth-upper-pon {
   top: 213px;
@@ -368,6 +500,12 @@ const position = ref(false)
   position: absolute;
   width: 35px;
   height: 35px;
+  background-color: var(--mouth);
+}
+.mouth-mask-con {
+  background-color: purple;
+}
+.mouth-mask-coff {
   background-color: var(--mouth);
 }
 .mouth-mask-pon {
@@ -386,6 +524,12 @@ const position = ref(false)
   border-left: 1px solid var(--base);
   border-right: 1px solid var(--base);
 }
+.neck-con {
+  background-color: lightgrey;
+}
+.neck-coff {
+  background-color: var(--skin);
+}
 .neck-pon {
   top: 330px;
   left: 28px;
@@ -401,8 +545,13 @@ const position = ref(false)
   width: 110px;
   height: 60px;
   background-color: var(--neutral);
-  border-radius: 10%;
   border: 1px solid var(--base);
+}
+.collar-left-ron {
+  border-radius: 0%;
+}
+.collar-left-roff {
+  border-radius: 10%;
 }
 .collar-left-pon {
   top: 340px;
@@ -442,6 +591,18 @@ const position = ref(false)
   border-radius: 50%;
   border: 1px solid var(--base);
 }
+.ear-ron {
+  border-radius: 0%;
+}
+.ear-roff {
+  border-radius: 50%;
+}
+.ear-con {
+  background-color: salmon;
+}
+.ear-coff {
+  background-color: var(--skin);
+}
 .ear-pon {
   top: 250px;
   left: -80px;
@@ -456,9 +617,16 @@ const position = ref(false)
     position: absolute;
     width: 15px;
     height: 15px;
-    border-left: 1px solid var(--base);
     border-top-left-radius: 50%;
     border-bottom-left-radius: 50%;
+}
+.ear-inner-ron {
+  border-left: 1px solid var(--base);
+  border-radius: 0%;
+}
+.ear-inner-roff {
+  border-left: 1px solid var(--base);
+  border-radius: 50%;
 }
 .ear-inner-pon {
   top: -10px;
