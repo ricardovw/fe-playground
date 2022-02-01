@@ -7,6 +7,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@baleada/vue-features": "^0.11.7",
+    "nanoid": "^3.2.0",
     "vue": "^3.2.25",
     "vue-router": "^4.0.12"
   },
